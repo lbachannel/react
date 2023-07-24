@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Thư viện React @17-->
+    <script crossorigin src="https://unpkg.com/react@18.0.0/umd/react.production.min.js"></script>
+    <!--Thư viện React-DOM @17-->
+    <script crossorigin src="https://unpkg.com/react-dom@18.0.0/umd/react-dom.production.min.js"></script>
+    <!--Thư viện babel-->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <title>React element types | React components</title>
+</head>
+
+<body>
+    <!--
+        1.  React element types: String, function/class
+            - Wrapper
+                - Header -> Header component
+                - Content -> Content component
+                - Footer -> Footer component
+        2. Biểu diễn đơn giản với JSX
+    -->
+    <div id="app"></div>
+    <script type="text/babel">
+        // component phải viết hoa chữ cái đầu theo dạng Pascal cây
+        function Header() {
+            return (
+                <div className="header">Header</div>
+            )
+        }
+
+        class Content extends React.Component {
+            render() {
+                return (
+                    <div className="content">New Content</div>
+                )
+            }
+        }
+
+        // PostItem.js
+        function PostItem({
+            // sử dụng destructuring
+            image,
+            title,
+            description,
+            publishedAt,
+            callback = () => { },
+        }) {
+            callback();
+            return (
+                <div className="post-item">
+                    <img src={image} alt={title} />
+                    <h2 className="post-title">{title}</h2>
+                    <p className="post-desc">{description}</p>
+                    <p className="post-published">{publishedAt}</p>
+                </div>
+            )
+        }
+
+
+        const app = (
+            <div className="post-list">
+                <PostItem
+                    title="1 C#(.NET) - Tương tác với file Excel"
+                    image="https://scontent.fsgn13-2.fna.fbcdn.net/v/t39.30808-6/326521811_2260392980806390_8741163396557706376_n.png?_nc_cat=109&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=t9WTO4_sKBAAX_FFq3A&_nc_ht=scontent.fsgn13-2.fna&oh=00_AfBtcoawtx0JMjQIM3zmtTwv4RgX7Cx4RNiOgjQeRDptLw&oe=64BFE4E3"
+                    description="1 Bạn có kiến thức ngôn ngữ C#! Bạn muốn thực hiện tương tác với file excel."
+                    publishedAt="1 Một ngày trước. 5 phút đọc"
+                    callback={() => { }} />
+                <PostItem
+                    title="2 C#(.NET) - Tương tác với file Excel"
+                    image="https://scontent.fsgn13-2.fna.fbcdn.net/v/t39.30808-6/326521811_2260392980806390_8741163396557706376_n.png?_nc_cat=109&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=t9WTO4_sKBAAX_FFq3A&_nc_ht=scontent.fsgn13-2.fna&oh=00_AfBtcoawtx0JMjQIM3zmtTwv4RgX7Cx4RNiOgjQeRDptLw&oe=64BFE4E3"
+                    description="2 Bạn có kiến thức ngôn ngữ C#! Bạn muốn thực hiện tương tác với file excel."
+                    publishedAt="2 Một ngày trước. 5 phút đọc" />
+                <PostItem
+                    title="3 C#(.NET) - Tương tác với file Excel"
+                    image="https://scontent.fsgn13-2.fna.fbcdn.net/v/t39.30808-6/326521811_2260392980806390_8741163396557706376_n.png?_nc_cat=109&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=t9WTO4_sKBAAX_FFq3A&_nc_ht=scontent.fsgn13-2.fna&oh=00_AfBtcoawtx0JMjQIM3zmtTwv4RgX7Cx4RNiOgjQeRDptLw&oe=64BFE4E3"
+                    description="3 Bạn có kiến thức ngôn ngữ C#! Bạn muốn thực hiện tương tác với file excel."
+                    publishedAt="3 Một ngày trước. 5 phút đọc" />
+            </div>
+        )
+        ReactDOM.render(app, document.getElementById('app'))
+    </script>
+</body>
+
+</html>

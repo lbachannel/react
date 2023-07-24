@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Thư viện React @17-->
+    <script crossorigin src="https://unpkg.com/react@18.0.0/umd/react.production.min.js"></script>
+    <!--Thư viện React-DOM @17-->
+    <script crossorigin src="https://unpkg.com/react-dom@18.0.0/umd/react-dom.production.min.js"></script>
+    <!--Thư viện babel-->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <title>JSX</title>
+</head>
+
+<body>
+    <!--
+        Chữa bài tập: render list khóa học
+
+        * Câu hỏi thường gặp:
+            - Tại sao khi code thuần dùng map phải join()...
+                    element.innerHTML = '...HTML'
+
+                    join() chuyển đổi cái mảng thành 1 chuỗi
+            - Gặp lỗi khi render từ mảng (prop "key")
+                    Với mỗi children nằm trong danh sách nên có duy nhất 1 key
+                    để không trùng nhau giữa các children
+            - Không render được 2 elements cùng lúc
+                    Case: Syntax error inline Babel script, JSX elements must be wrapped in an enclosing tag
+                    const jsx = (
+                        <h1>Java</h1>
+                        <h1>Javascript</h1>
+                    )
+
+                    solution:
+                    const jsx = (
+                        <div>
+                            <h1>Java</h1>
+                            <h1>Javascript</h1>
+                        </div>
+                    )
+    -->
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+        // mảng
+        const courses = [
+            {
+                name: 'Html, Css'
+            },
+            {
+                name: 'Responsive web design'
+            },
+            {
+                name: 'ReactJS'
+            }
+        ];
+        const jsx = (
+            <ul>
+                {courses.map((course, index) =>
+                    <li key={index}>{course.name}</li>
+                )}
+            </ul>
+        )
+
+        ReactDOM.render(jsx, document.getElementById('root'))
+    </script>
+</body>
+
+</html>

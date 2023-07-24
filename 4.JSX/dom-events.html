@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Thư viện React @17-->
+    <script crossorigin src="https://unpkg.com/react@18.0.0/umd/react.production.min.js"></script>
+    <!--Thư viện React-DOM @17-->
+    <script crossorigin src="https://unpkg.com/react-dom@18.0.0/umd/react-dom.production.min.js"></script>
+    <!--Thư viện babel-->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <title>Dom events</title>
+</head>
+
+<body>
+    <!--
+        Làm việc với JSX
+
+        // Phần I
+        - xử lý DOM events
+        - Component do chúng ta định nghĩa phải viết in hoa kí tự đầu
+            Chọn component trong 1 project
+        - Booleans, Null & Undefined không được render
+        - Kết hợp toán tử logic để render theo điều kiện
+
+        // Phần II.
+        - Props trong JSX
+            -<YourComponent
+                propName1="String literals"
+                propName2={expression}
+            />
+            - Props default to "true"
+            - Spread/Rest props
+            - Children prop
+                - <YourComponent>String literals</YourComponent>
+                - <YourComponent>{expression}</YourComponent>
+                - Render props
+    -->
+    <div id="root"></div>
+    <script type="text/babel">
+
+        // tạo components linh hoạt
+        const Form = {
+            Input() {
+                return <input />
+            },
+            Checkbox() {
+                return <input type="checkbox" />
+            }
+        }
+
+        // nhận nhiều props, props nào là function thì đứng cuối
+        function Button({ title, href, onClick }) {
+            let Component = 'button'
+            const props = {}
+            if (onClick)
+                props.onClick = onClick;
+            if (href) {
+                Component = 'a'
+                props.href = href;
+            }
+            return (
+                <Component {...props}>{title}</Component>
+            )
+        }
+
+        function App() {
+
+            const type = 'Checkbox'
+
+            const Component = Form[type]
+
+            return (
+                <div id="wrapper">
+                    <Component />
+                    <Button
+                        title="Click me!"
+                        href="https://fullstack.edu.vn/"
+                        onClick={() => console.log(Math.random())}
+                    />
+                </div>
+            )
+        }
+        ReactDOM.render(<App />, document.getElementById('root'))
+    </script>
+</body>
+
+</html>

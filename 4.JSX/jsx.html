@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Thư viện React @17-->
+    <script crossorigin src="https://unpkg.com/react@18.0.0/umd/react.production.min.js"></script>
+    <!--Thư viện React-DOM @17-->
+    <script crossorigin src="https://unpkg.com/react-dom@18.0.0/umd/react-dom.production.min.js"></script>
+    <!--Thư viện babel-->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <title>JSX</title>
+</head>
+
+<body>
+    <!--
+        JSX -> Javascript XML
+            xml: đặc trưng thẻ mở thẻ đóng. HTML củng là xml
+        1. Luôn dùng React.createElement() ? Vấn đề ?
+        2. JSX? Live demo: https://bit.ly/2VOIMN7
+        3. JSX không phải là HTML, 
+            Cần có Javascript, Babel để dùng JSX
+        4. JSX và React-DOM?
+
+        <ul>
+            <li>Javascript</li>
+            <li>ReactJs</li>
+        </ul>
+    -->
+    <div id="root"></div>
+    <script type="text/babel">
+        // bài tập
+        const courses = [
+            {
+                name: 'html, css'
+            },
+            {
+                name: 'Responsive web design'
+            },
+            {
+                name: 'ReactJS'
+            }
+        ];
+        const jsx = (
+            <ul>
+                {
+                    courses.map((course, index) =>
+                        <li key={index}>
+                            {course.name}
+                        </li>
+                    )
+                }
+            </ul>
+        )
+
+        ReactDOM.render(jsx, document.getElementById('root'))
+    </script>
+</body>
+
+</html>
